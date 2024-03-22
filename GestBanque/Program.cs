@@ -5,6 +5,11 @@ class program
 {
     static void Main(string[]args)
     {
+        Banque banque = new Banque()
+        {
+            Nom = "ING"
+        };
+
         Personne doeJohn = new Personne()
         {
             Nom = "Doe",
@@ -19,7 +24,9 @@ class program
             Titulaire = doeJohn
         };
 
-        courant.Depot(-100);
+        banque.Ajouter(courant);
+
+        banque["0001"]?.Depot(-100);
         courant.Depot(100);
         courant.Retrait(-100);
         courant.Retrait(100);
