@@ -3,7 +3,7 @@ namespace GestBanque;
 
 class program
 {
-    static void main(string[]args)
+    static void Main(string[]args)
     {
         Personne doeJohn = new Personne()
         {
