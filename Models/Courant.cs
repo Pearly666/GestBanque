@@ -3,6 +3,7 @@ namespace Models;
 
 public class Courant:Compte
 {
+    private string _numero;
     private double _ligneDeCredit;
     private Personne _titulaire;
 
