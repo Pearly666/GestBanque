@@ -20,7 +20,6 @@ public class Courant
             _numero = value;
         }
     }
-
     public double Solde
     {
         get
@@ -33,7 +32,6 @@ public class Courant
             _solde = value;
         }
     }
-
     public double LigneDeCredit
     {
         get
@@ -52,7 +50,6 @@ public class Courant
             _ligneDeCredit = value;
         }
     }
-
     public Personne Titulaire
     {
         get
@@ -74,7 +71,6 @@ public class Courant
         }
         Solde += montant;
     }
-    
     public void Retrait(double montant)
     {
         if (montant <= 0)
@@ -89,4 +85,10 @@ public class Courant
         }
         Solde -= montant;
     }
+
+    public static double operator + (double montant, Courant courant)
+    {
+        return (montant < 0 ? 0 : montant) + (courant.Solde < 0 ? 0 : courant.Solde);
+    }
+    
 }

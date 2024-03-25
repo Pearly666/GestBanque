@@ -24,14 +24,25 @@ class program
             Titulaire = doeJohn
         };
 
+        Courant courant2 = new Models.Courant()
+        {
+            Numero = "0002",
+            LigneDeCredit = 500,
+            Titulaire = doeJohn
+        };
+
         banque.Ajouter(courant);
 
         banque["0001"]?.Depot(-100);
-        courant.Depot(100);
-        courant.Retrait(-100);
-        courant.Retrait(100);
-        courant.Retrait(600);
+        banque["0001"]?.Depot(100);
+        banque["0001"]?.Retrait(-100);
+        banque["0001"]?.Retrait(100);
+        banque["0001"]?.Retrait(600);
 
-        Console.WriteLine(courant.Solde);
+        banque["0002"]?.Depot(300);
+
+        Console.WriteLine(banque.AvoirDesComptes(doeJohn));
+
+        Console.WriteLine(courant2.Solde);
     }
 }
