@@ -9,9 +9,9 @@ namespace Models
 {
     public abstract class Compte
     {
-        public static double operator +(double montant, Compte courant)
+        public static double operator +(double montant, Compte compte)
         {
-            return (montant < 0 ? 0 : montant) + (courant.Solde < 0 ? 0 : courant.Solde);
+            return (montant < 0 ? 0 : montant) + (compte.Solde < 0 ? 0 : compte.Solde);
         }
 
         private string _numero;
