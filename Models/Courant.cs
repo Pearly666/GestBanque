@@ -7,7 +7,7 @@ public class Courant : Compte
 {
     private double _ligneDeCredit;
     
-    public double LigneDeCredit
+    public override double LigneDeCredit
     {
         get
         {

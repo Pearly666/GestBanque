@@ -31,6 +31,18 @@ namespace Models
             }
         }
 
+        public virtual double LigneDeCredit
+        {
+            get
+            {
+                return 0D;
+            }
+            set
+            {
+                Console.WriteLine("Erreur, on ne peut pas modifier la ligne de crédit d'un compte");
+            }
+        }
+
         public double Solde
         {
             get
