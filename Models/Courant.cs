@@ -1,4 +1,6 @@
 ﻿
+using System.Security.Cryptography.X509Certificates;
+
 namespace Models;
 
 public class Courant : Compte
@@ -31,4 +33,6 @@ public class Courant : Compte
     {
         return Solde * ((Solde <0) ? 0.0975 : 0.03);
     }
+
+    
 }
