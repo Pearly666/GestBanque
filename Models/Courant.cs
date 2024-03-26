@@ -88,5 +88,9 @@ public class Courant
             return;
         }
         Solde -= montant;
+
+    protected override double CalculInteret()
+    {
+        return Solde * ((Solde <0) ? 0.0975 : 0.03);
     }
 }
