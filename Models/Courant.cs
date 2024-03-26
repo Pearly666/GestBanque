@@ -3,34 +3,9 @@ namespace Models;
 
 public class Courant:Compte
 {
-    private string _numero;
     private double _ligneDeCredit;
-    private Personne _titulaire;
 
-    public string Numero
-    {
-        get
-        {
-            return _numero;
-        }
-
-        set
-        {
-            _numero = value;
-        }
-    }
-    public double Solde
-    {
-        get
-        {
-            return _solde;
-        }
-
-        private set
-        {
-            _solde = value;
-        }
-    }
+    
     public double LigneDeCredit
     {
         get
@@ -50,10 +25,9 @@ public class Courant:Compte
         }
     }
 
-    protected override void Retrait(double montant)
+    public override void Retrait(double montant)
     {
         Retrait(montant, LigneDeCredit);
     }
 
-    
 }

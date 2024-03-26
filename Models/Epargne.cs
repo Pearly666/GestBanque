@@ -9,15 +9,16 @@ namespace Models
 {
     public class Epargne:Compte
     {
-        public DateTime DateDernierRetrait
+        private DateTime _dernierRetrait;
+        public DateTime DernierRetrait
         {
             get
             {
-                return _DateDernierRetrait;
+                return _dernierRetrait;
             }
             set
             {
-                _DateDernierRetrait = value;
+                _dernierRetrait = value;
             }
         }
         public override void Retrait(double montant)
@@ -28,7 +29,7 @@ namespace Models
 
             if (Solde != ancienSolde)
             {
-                _DateDernierRetrait = DateTime.Now;
+                DernierRetrait = DateTime.Now;
             }
         }
     

@@ -10,20 +10,21 @@ namespace Models
     public class Banque
     {
        
-        private Dictionary<string, Courant> _comptes = new Dictionary<string, Courant>();
+        private Dictionary<string, Compte> _comptes = new Dictionary<string, Compte>();
         public string Nom { get; set; }
 
-        public Courant this[string numero]
+        public Compte? this[string numero]
         {
             get
             {
                 if (!_comptes.ContainsKey(numero))
                     return null;
+
                 return _comptes[numero];
             }
         }
 
-        public void Ajouter(Courant compte)
+        public void Ajouter(Compte compte)
         {
             _comptes.Add(compte.Numero, compte);
         }
@@ -35,14 +36,26 @@ namespace Models
             _comptes.Remove(numero);
         }
 
-        //public Courant this[Numero]
-        //{
-        //    get
-        //    {
-        //        Courant c;
-        //        Compte.TryGetValue(Numero, out c);
-        //        return c;
-        //    }
-        //}
+        public double AvoirDesComptes (Personne titulaire)
+        {
+            double total = 0D;
+
+            //foreach(KeyValuePair<string, Courant> kvp in _comptes)
+            //{
+            //    if(kvp.Value.Titulaire == titulaire)
+            //    {
+            //        total += kvp.Value;
+            //    }
+            //}
+
+            foreach (Compte courant in _comptes.Values)
+            {
+                if (courant.Titulaire == titulaire)
+                {
+                    total += courant;
+                }
+            }
+            return total;
+        }
     }
 }

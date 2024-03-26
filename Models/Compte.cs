@@ -8,14 +8,14 @@ namespace Models
 {
     public class Compte
     {
-        private string _numero;
-        private double _solde;
-        private Personne _titulaire;
-
         public static double operator +(double montant, Compte courant)
         {
             return (montant < 0 ? 0 : montant) + (courant.Solde < 0 ? 0 : courant.Solde);
         }
+
+        private string _numero;
+        private double _solde;
+        private Personne _titulaire;
 
         public Personne Titulaire
         {
