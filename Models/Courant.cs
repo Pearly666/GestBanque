@@ -7,8 +7,9 @@ public class Courant : Compte
 {
     private double _ligneDeCredit;
     
-    public override double LigneDeCredit
+    public double LigneDeCredit
     {
+
         get
         {
             return _ligneDeCredit;
@@ -25,13 +26,27 @@ public class Courant : Compte
             _ligneDeCredit = value;
         }
     }
+
+    public Courant(string numero, Personne titulaire) : base(numero, titulaire)
+    {
+    }
+
+    public Courant(string numero, Personne titulaire, double solde) : base(numero, titulaire, solde)
+    {
+    }
+
+    public Courant(string numero, double ligneDeCredit, Personne titulaire) : base(numero, titulaire)
+    {
+        LigneDeCredit = ligneDeCredit;
+    }
+
     public override void Retrait(double montant)
     {
         Retrait(montant, LigneDeCredit);
     }
     protected override double CalculInteret()
     {
-        return Solde * ((Solde <0) ? 0.0975 : 0.03);
+        return Solde * ((Solde < 0) ? 0.0975 : 0.03);
     }
 
     

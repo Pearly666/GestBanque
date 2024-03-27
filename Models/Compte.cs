@@ -9,6 +9,7 @@ namespace Models
 {
     public abstract class Compte : ICustomer, IBanker
     {
+
         public static double operator +(double montant, Compte compte)
         {
             return (montant < 0 ? 0 : montant) + (compte.Solde < 0 ? 0 : compte.Solde);
@@ -25,23 +26,12 @@ namespace Models
                 return _titulaire;
             }
 
-            set
+            private set
             {
                 _titulaire = value;
             }
         }
 
-        public virtual double LigneDeCredit
-        {
-            get
-            {
-                return 0D;
-            }
-            set
-            {
-                Console.WriteLine("Erreur, on ne peut pas modifier la ligne de crédit d'un compte");
-            }
-        }
 
         public double Solde
         {
@@ -63,10 +53,21 @@ namespace Models
                 return _numero;
             }
 
-            set
+            private set
             {
                 _numero = value;
             }
+        }
+
+        protected Compte(string numero, Personne titulaire)
+        {
+            Numero = numero;
+            Titulaire = titulaire;
+        }
+
+        protected Compte(string numero, Personne titulaire, double solde) : this(numero, titulaire)
+        {
+            Solde = solde;
         }
 
         public void Depot(double montant)

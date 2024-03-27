@@ -10,8 +10,12 @@ namespace Models
     public class Banque
     {
        
-        private Dictionary<string, Compte> _comptes = new Dictionary<string, Compte>();
-        public string Nom { get; set; }
+        private Dictionary<string, Compte> _comptes;
+        public Banque(string nom)
+        {
+            _comptes = new Dictionary<string, Compte>();
+            Nom = nom;
+        }
 
         public Compte? this[string numero]
         {
@@ -22,6 +26,7 @@ namespace Models
                 return _comptes[numero];
             }
         }
+        public string Nom { get; init; }
 
         public void Ajouter(Compte compte)
         {
