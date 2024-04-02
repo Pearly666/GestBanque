@@ -19,8 +19,7 @@ public class Courant : Compte
         {
             if (value < 0)
             {
-                Console.WriteLine("La ligne de crédit est strictement positive...");
-                return;
+                throw new InvalidOperationException("La ligne de crédit est strictement positive...");
             }
 
             _ligneDeCredit = value;
@@ -42,12 +41,18 @@ public class Courant : Compte
 
     public override void Retrait(double montant)
     {
+        double ancienSolde = Solde;
         Retrait(montant, LigneDeCredit);
+
+        if (ancienSolde >= 0 && Solde < 0)
+        {
+            RaisePassageEnNegatifEvent();
+        }
     }
     protected override double CalculInteret()
     {
         return Solde * ((Solde < 0) ? 0.0975 : 0.03);
     }
-
     
+   
 }

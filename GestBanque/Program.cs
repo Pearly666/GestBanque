@@ -1,35 +1,19 @@
 ﻿using Models;
 namespace GestBanque;
 
-class program
+class program 
+
 {
     static void Main(string[]args)
     {
-        Banque banque = new Banque()
-        {
-            Nom = "ING"
-        };
+        Banque banque = new Banque("MyFavouriteBank");
 
-        Personne doeJohn = new Personne()
-        {
-            Nom = "Doe",
-            Prenom = "John",
-            DateNaiss = new DateTime(2000, 02, 29)
-        };
+        Personne doeJohn = new Personne("Doe", "John", new DateTime(2000, 02, 29));
 
-        Compte courant = new Courant()
-        {
-            Numero = "0001",
-            LigneDeCredit = 500,
-            Titulaire = doeJohn
-        };
+        Compte courant = new Courant("0001", 500, doeJohn);
 
-        Compte epargne = new Epargne()
-        {
-            Numero = "0002",
-            Titulaire = doeJohn
-        };
-
+        Compte epargne = new Epargne("0002", doeJohn);
+        
         banque.Ajouter(courant);
         banque.Ajouter(epargne);
 

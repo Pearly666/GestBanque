@@ -22,6 +22,15 @@ namespace Models
                 _dernierRetrait = value;
             }
         }
+        public Epargne(string numero, Personne titulaire) : base(numero, titulaire)
+        {
+        }
+
+        public Epargne(string numero, Personne titulaire, double solde, DateTime dernierRetrait) : base(numero, titulaire, solde)
+        {
+            DernierRetrait = dernierRetrait;
+        }
+
         public override void Retrait(double montant)
         {
 
@@ -32,15 +41,6 @@ namespace Models
             {
                 DernierRetrait = DateTime.Now;
             }
-        }
-
-        public Epargne(string numero, Personne titulaire) : base(numero, titulaire)
-        {
-        }
-
-        public Epargne(string numero, Personne titulaire, double solde, DateTime dernierRetrait) : base(numero, titulaire, solde)
-        {
-            DernierRetrait = dernierRetrait;
         }
 
         protected override double CalculInteret()

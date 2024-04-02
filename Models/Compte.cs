@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace Models
 {
+    
     public abstract class Compte : ICustomer, IBanker
     {
 
@@ -74,9 +75,9 @@ namespace Models
         {
             if (montant <= 0)
             {
-                Console.WriteLine("Erreur: montant négatif impossible");
-                return;
+                throw new ArgumentOutOfRangeException("Dépot d'un montant négatif impossible");
             }
+
             Solde += montant;
         }
 
@@ -89,15 +90,15 @@ namespace Models
         {
             if (montant <= 0)
             {
-                Console.WriteLine("Erreur, retrait d'un montant négatif impossible"); // => Erreur: exception 
-                return;
+                throw new ArgumentOutOfRangeException("Retrait d'un montant négatif impossible");
             }
-            if (Solde - montant < LigneDeCredit) ;
+
+            if (Solde - montant < -LigneDeCredit)
             {
-                Console.WriteLine("Erreur: solde insuffisant"); // => Erreur: exeception
-                return;
+                throw new SoldeInsuffisantException("Le solde est insuffisant!");
             }
-            Solde -= montant;
+
+            Solde -= montant;  
         }
 
 
@@ -106,6 +107,16 @@ namespace Models
         public void AppliquerInteret()
         {
             Solde += CalculInteret();
+        }
+        
+        public event  Action<Compte>?PassageEnNegatifEvent;
+
+        protected void RaisePassageEnNegatifEvent()
+        {
+
+            Action<Compte>? passageEnNegatifEvent = PassageEnNegatifEvent;
+            PassageEnNegatifEvent?.Invoke(this);
+
         }
 
     }

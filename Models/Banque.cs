@@ -16,7 +16,7 @@ namespace Models
             _comptes = new Dictionary<string, Compte>();
             Nom = nom;
         }
-
+        public string Nom { get; init; }
         public Compte? this[string numero]
         {
             get
@@ -26,17 +26,20 @@ namespace Models
                 return _comptes[numero];
             }
         }
-        public string Nom { get; init; }
-
+       
         public void Ajouter(Compte compte)
         {
             _comptes.Add(compte.Numero, compte);
+            compte.PassageEnNegatifEvent += PassageEnNegatifAction;
         }
 
         public void Supprimer(string numero)
         {
             if (!_comptes.ContainsKey(numero))
                 return;
+
+            Compte compte = this[numero]!;
+            compte.PassageEnNegatifEvent -= PassageEnNegatifAction;
             _comptes.Remove(numero);
         }
 
@@ -61,6 +64,11 @@ namespace Models
             }
 
             return total;
+        }
+
+        private void PassageEnNegatifAction(Compte compte)
+        {
+            Console.WriteLine($"Le compte numéro '{compte.Numero}' vient de passer en négatif.");
         }
     }
 }
